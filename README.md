@@ -1,9 +1,8 @@
-# BLENDED_LEARNING
 # Implementation of Decision Tree Model for Tumor Classification
 <H3>NAME: KEERTHANA S</H3>
 <H3>REGISTER NO.: 212223240070</H3>
 <H3>EX. NO.8</H3>
-<H3>DATE:</H3>
+<H3>DATE: 21.10.24</H3>
 
 ## AIM:
 To implement and evaluate a Decision Tree model to classify tumors as benign or malignant using a dataset of lab test results.
@@ -32,8 +31,8 @@ To implement and evaluate a Decision Tree model to classify tumors as benign or 
    Measure the model’s performance on the test data with relevant metrics.
 
 ## Program:
-```
-# Import the necessary libraries
+```py
+# Import necessary libraries
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
@@ -46,34 +45,29 @@ url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-ML
 data = pd.read_csv(url)
 
 # Step 2: Explore the dataset
-# Display the first few rows and column names to verify the structure
+# Display first few rows to understand the structure
 print(data.head())
-print(data.columns)
 
 # Step 3: Select features and target variable
-# Drop 'id' and other non-feature columns, using 'diagnosis' as the target
-X = data.drop(columns=['Class'])  # Remove any irrelevant columns like 'id'
-y = data['Class']  # The target column indicating benign or malignant diagnosis
+X = data.drop(columns=['Class'])  # Features: remove 'Class' column
+y = data['Class']  # Target: 'Class' column for benign/malignant classification
 
-# Step 4: Split the data into training and testing sets
+# Step 4: Split the data into training and testing sets (70% train, 30% test)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-# Step 5: Initialize and train the Decision Tree model
-# Create a Decision Tree Classifier and fit it on the training data
+# Step 5: Train the Decision Tree model
 model = DecisionTreeClassifier(random_state=42)
 model.fit(X_train, y_train)
 
 # Step 6: Evaluate the model
-# Predict on the test set and evaluate the results
 y_pred = model.predict(X_test)
 
-# Print the accuracy and classification metrics for the model
+# Print accuracy and classification report
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
 print("Classification Report:\n", classification_report(y_test, y_pred))
 
 # Step 7: Visualize the Confusion Matrix
-# Generate a heatmap of the confusion matrix for better visualization
 conf_matrix = confusion_matrix(y_test, y_pred)
 sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues")
 plt.xlabel("Predicted")
@@ -84,7 +78,8 @@ plt.show()
 ```
 
 ## Output:
-<img width="671" alt="Screenshot 2024-11-14 at 11 32 31 AM" src="https://github.com/user-attachments/assets/b4928d71-0dfd-485a-9ccc-0a5a75222352">
+![image](https://github.com/user-attachments/assets/27bb532d-bfec-4a25-8a69-2de1b7730d4e)
+![image](https://github.com/user-attachments/assets/fdae2c18-b1b6-470d-a10d-6d6f2963e56a)
 
 
 ## Result:
